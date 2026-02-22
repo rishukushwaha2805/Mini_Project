@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Mapping & Ratio Tracker</title>
+    <link rel="stylesheet" href="index.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📍 Crime Mapping Dashboard</h1>
+            <p>Analyze crime ratios by type and location</p>
+        </header>
+        
+        <main>
+            <section class="search-panel">
+                <h2>Search Parameters</h2>
+                <form id="crimeForm">
+                    <div class="input-group">
+                        <label for="crimeType">Crime Type:</label>
+                        <select id="crimeType" required>
+                            <option value="">Select a crime category...</option>
+                            <option value="Theft">Theft / Larceny</option>
+                            <option value="Assault">Assault</option>
+                            <option value="Burglary">Burglary</option>
+                            <option value="Vandalism">Vandalism</option>
+                            <option value="Vehicle Theft">Motor Vehicle Theft</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="location">Location (City, State, or Zip):</label>
+                        <input type="text" id="location" placeholder="e.g., New Delhi" required>
+                    </div>
+                    
+                    <button type="submit" id="analyzeBtn">Analyze Data</button>
+                </form>
+            </section>
+
+            <section class="results-panel">
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Fetching historical crime data & location...</p>
+                </div>
+                
+                <div id="resultDisplay" class="hidden">
+                    <h3>Analysis for: <span id="displayLocation" class="highlight"></span></h3>
+                    <p>Category: <strong id="displayCrime"></strong></p>
+                    
+                    <div class="ratio-container">
+                        <div class="ratio-box">
+                            <p class="ratio-title">Local Crime Ratio</p>
+                            <h2 id="displayRatio">0.00%</h2>
+                            <p class="ratio-subtitle" id="ratioStatus"></p>
+                        </div>
+                    </div>
+
+                    <div id="map"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
